@@ -10,4 +10,5 @@ public class GestionHadilApplication {
         SpringApplication.run(GestionHadilApplication.class, args);
     }
 
+
 }

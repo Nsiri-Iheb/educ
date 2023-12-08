@@ -2,9 +2,11 @@ package com.example.Controller;
 
 import com.example.Entitu.Account;
 import com.example.Entitu.Customer;
+import com.example.Entitu.Transaction;
 import com.example.REpositru.CustomerRepositru;
 import com.example.Service.AccountService;
 import com.example.Service.CustomerService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,4 +61,31 @@ public class CustomerController {
         return  customer.getAccounts();
 
     }
+    @PostMapping("/affecte/{id}/{idacc}")
+    public void AffecterCustomerToAccount( @PathVariable Long id, @PathVariable Long idacc){
+        accountService.affecte(id,idacc);
+    }
+    @GetMapping("/gettype")
+    public List<Account> getAllAccountByAccountType(){
+        return  accountService.getAllAccountByAccountType();
+    }
+    @PostMapping("/addtrns/{id}")
+    public Transaction addTransation( @RequestBody Transaction transaction, @PathVariable Long id){
+        return  accountService.addTransation(transaction,id);
+
+    }
+    @GetMapping("/gett/{id}")
+    public List<Transaction> getAllTransactionForCustomer( @PathVariable Long id){
+        return  accountService.getAllTransactionForCustomer(id);
+    }
+    @GetMapping("/gettt")
+    public List<Transaction> getAllTRansationByType(){
+        return  accountService.getAllTRansationByType();
+    }
+    @GetMapping("/getttt/{id}")
+    public List<Transaction> getAllTrnsationByAccountId(@PathVariable Long id){
+        return  accountService.getAllTrnsationByAccountId(id);
+    }
+
 }
+
